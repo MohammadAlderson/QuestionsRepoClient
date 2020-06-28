@@ -31,7 +31,7 @@ function EditProfile(props) {
 
     return (
         <Container>
-            <CustomHeader title="ویرایش پروفایل" navigation={props.navigation}/>
+            <CustomHeader title="ویرایش پروفایل" navigation={props.navigation} backBtn />
             <ScrollView style={{paddingVertical: 10, paddingHorizontal: 10}}>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
                     <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>نام:</BoldText>

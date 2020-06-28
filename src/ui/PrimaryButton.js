@@ -11,7 +11,7 @@ function PrimaryButton(props) {
             onPress={props.onPress}
             style={[styles.buttonContainer, styles.primaryButtonBackgroundColor, props.style]}>
             <View style={styles.buttonInsideLayer}>
-                <Text style={[styles.buttonText, styles.primaryButtonFontColor]}>{props.btnText}</Text>
+                <Text style={[styles.buttonText, styles.primaryButtonFontColor, props.textStyle]}>{props.btnText}</Text>
             </View>
         </TouchableOpacity>
     )

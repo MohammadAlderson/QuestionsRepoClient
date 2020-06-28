@@ -6,7 +6,7 @@ import styles from "../styles/ui.styles";
 
 function Body(props) {
     return (
-        <View style={[props.style, styles.body]}>
+        <View style={[styles.body, props.style]}>
             {props.children}
         </View>
     )

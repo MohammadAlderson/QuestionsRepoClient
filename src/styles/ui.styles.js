@@ -7,7 +7,7 @@ const lightFont = 'IRANYekanMobileLight'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-            backgroundColor: '#EEEFF9'
+            backgroundColor: '#FFFFFE'
     },
     body: {
         flex: 1,
@@ -15,23 +15,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     primaryButtonBackgroundColor: {
-        backgroundColor: '#354561',
+        backgroundColor: '#FFFFFE',
+        borderWidth: 1.5,
+        borderColor: '#874fcc'
     },
     secondaryButtonBackgroundColor: {
-        backgroundColor: '#ADCAE0',
+        backgroundColor: '#874fcc',
+        // borderWidth: 1.5,
+        // borderColor: '#FFFFFE',
+        elevation: 2
     },
     primaryButtonFontColor: {
-        color: '#ADCAE0',
+        color: '#874fcc',
     },
     secondaryButtonFontColor: {
-        color: '#354561',
+        color: '#FFFFFE',
     },
     buttonContainer: {
-        backgroundColor: '#354561',
         height: 50,
-        width: 160,
-        borderRadius: 50,
-        elevation: 2,
+        width: 200,
+        borderRadius: 4,
         marginVertical: 10
     },
     buttonInsideLayer : {

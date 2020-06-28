@@ -1,16 +1,23 @@
 import React from 'react';
-import {TouchableOpacity, View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, ScrollView, Modal} from 'react-native';
 import User from './../../assets/icons/user.svg'
-import styles from './../styles/ui.styles'
-import {Row, BoldText, NormalText, Container, CustomHeader} from "../ui/index";
-import {Body} from 'native-base'
+import {
+    Row, BoldText, NormalText, Container,
+    CustomHeader, LightText, SecondaryButton, PrimaryButton
+} from "../ui/index";
 import {UserContext} from "../context/UserContext";
+import AsyncStorage from "@react-native-community/async-storage";
+import {AuthContext} from "../../App";
 
 function Profile(props) {
+
+    const {setLoginHandler} = React.useContext(AuthContext);
 
     const {userId} = React.useContext(UserContext);
     const [userData, setUserData] = React.useState();
     const [loading, setLoading] = React.useState(true);
+
+    const [logoutModalState, setLogoutModalState] = React.useState(false);
 
     const refreshData = async () => {
         setLoading(true)
@@ -44,47 +51,116 @@ function Profile(props) {
         getUserData();
     }, [])
 
+    async function logOutHandler() {
+        await AsyncStorage.setItem('userId', '');
+        await AsyncStorage.setItem('isLogin', 'false');
+        setLoginHandler(false)
+    }
+
+
     return (
         <Container>
             <CustomHeader title="پروفایل" navigation={props.navigation}/>
-            <Body>
+            <Modal
+                animationType="fade"
+                visible={logoutModalState}
+                transparent={true}
+                onRequestClose={() => setLogoutModalState(false)}
+            >
+                <View style={{flex: 1, backgroundColor: '#0000008a', justifyContent: 'center'}}>
+                    <View style={{
+                        paddingVertical: 20,
+                        margin: 10,
+                        backgroundColor: '#fff',
+                        borderRadius: 5,
+                        height: 200
+                    }}>
+                        <BoldText style={{fontSize: 20, lineHeight: 35, marginRight: 20}}>آیا می خواهید از حساب کاربری
+                            خود خارج شوید؟</BoldText>
+                        <Row style={{
+                            width: '100%',
+                            justifyContent: 'space-between',
+                            paddingHorizontal: 10,
+                            marginTop: 10
+                        }}>
+                            <SecondaryButton style={{flex: 0.5, marginHorizontal: 3}} onPress={() => {
+                                setLogoutModalState(false)
+                                logOutHandler()
+                            }}
+                                             btnText="بله"/>
+                            <PrimaryButton style={{flex: 0.5, marginHorizontal: 3}} onPress={() => {
+                                setLogoutModalState(false)
+                            }} btnText="خیر"/>
+                        </Row>
+                    </View>
+                </View>
+            </Modal>
+            <ScrollView>
                 {
                     loading ? (
-                        <ActivityIndicator size="large"/>
+                        <View style={{
+                            backgroundColor: '#874fcc',
+                            height: 220,
+                            width: '100%',
+                            alignItems: 'center',
+                            marginBottom: 10
+                        }}>
+                            <ActivityIndicator size="large" color="#FFFFFE"/>
+                        </View>
                     ) : (
                         <>
-                            <User width={120} height={120} style={{marginTop: 30}}/>
-                            <View style={{marginVertical: 16, alignItems: 'center'}}>
-                                <BoldText style={{ fontSize: 19}}>{userData.displayName}</BoldText>
-                                <BoldText style={{ fontSize: 16 , color: '#6079bf'}}>@{userData.userName}</BoldText>
+                            <View style={{
+                                backgroundColor: '#874fcc',
+                                height: 220,
+                                width: '100%',
+                                alignItems: 'center',
+                                marginBottom: 10
+                            }}>
+                                <User width={90} height={90} style={{marginTop: 30}}/>
+                                <View style={{marginVertical: 8, alignItems: 'center'}}>
+                                    <BoldText style={{fontSize: 24, color: '#FFFFFE'}}>{userData.displayName}</BoldText>
+                                    <LightText style={{fontSize: 20, color: '#FFFFFE'}}>@{userData.userName}</LightText>
+                                </View>
                             </View>
-                            <Row style={{justifyContent: 'space-evenly', width: '100%'}}>
-                                <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                    <BoldText style={{fontSize: 16}}>جواب ها</BoldText>
-                                    <NormalText style={{fontSize: 15}}>{userData.ansCount}</NormalText>
-                                </View>
-                                <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                    <BoldText style={{fontSize: 16}}>سوالات</BoldText>
-                                    <NormalText style={{fontSize: 15}}>{userData.questionCount}</NormalText>
-                                </View>
-                            </Row>
-                            <View style={{marginTop: 20}}>
-                                <Row style={{justifyContent: 'space-evenly', width: '100%'}}>
-                                    <TouchableOpacity activeOpacity={0.8}
-                                                      onPress={() => props.navigation.navigate('EditProfile', {userId, refreshData})}
-                                                      style={[styles.fullyCenter, styles.profileButton]}>
-                                        <NormalText>ویرایش پروفایل</NormalText>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity activeOpacity={0.8}
-                                                      style={[styles.fullyCenter, styles.profileButton]}>
-                                        <NormalText>سوالات من</NormalText>
-                                    </TouchableOpacity>
+                            <View style={{width: '100%'}}>
+                                <Row style={{
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    justifyContent: 'space-between',
+                                    height: 60,
+                                    paddingHorizontal: 40
+                                }}>
+                                    <NormalText style={{fontSize: 20}}>{userData.ansCount}</NormalText>
+                                    <BoldText style={{fontSize: 20}}>جواب ها</BoldText>
                                 </Row>
+                                <Row style={{
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    justifyContent: 'space-between',
+                                    height: 60,
+                                    paddingHorizontal: 40
+                                }}>
+                                    <NormalText style={{fontSize: 20}}>{userData.questionCount}</NormalText>
+                                    <BoldText style={{fontSize: 20}}>سوالات</BoldText>
+                                </Row>
+                            </View>
+                            <View
+                                style={{marginTop: 20, width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                                <SecondaryButton
+                                    onPress={() => props.navigation.navigate('EditProfile', {userId, refreshData})}
+                                    style={{borderRadius: 4, width: 250, height: 55}} btnText="ویرایش پروفایل"/>
+                                <SecondaryButton
+                                    onPress={() => props.navigation.navigate('UserQuestions', {userId})}
+                                    style={{borderRadius: 4, width: 250, height: 55}} btnText="سوال های من"/>
+                                <PrimaryButton
+                                    onPress={() => setLogoutModalState(true)}
+                                    style={{borderRadius: 4, width: 250, height: 55}}
+                                    btnText="خروج از حساب کاربری"/>
                             </View>
                         </>
                     )
                 }
-            </Body>
+            </ScrollView>
         </Container>
     )
 }

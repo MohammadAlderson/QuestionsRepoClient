@@ -30,7 +30,7 @@ function CategoriesList(props) {
 
     return (
         <Container>
-            <CustomHeader title="دسته بندی ها"  navigation={props.navigation} />
+            <CustomHeader backBtn title="دسته بندی ها" navigation={props.navigation}/>
             {
                 loading ? (
                     <ActivityIndicator size="large"/>
@@ -40,10 +40,13 @@ function CategoriesList(props) {
                         keyExtractor={item => item._id}
                         renderItem={({item}) => (
                             <Row style={{width: '100%', justifyContent: 'center'}}>
-                                <PrimaryButton btnText={item.name} style={{borderRadius: 4, width: 250, height: 70}} />
+                                <PrimaryButton btnText={item.name} style={{borderRadius: 4, width: 250, height: 70}}/>
                             </Row>
                         )}
-                        ListHeaderComponent={() => <Row style={{paddingHorizontal: 10, justifyContent: 'flex-end', marginTop: 10}}><BoldText>دسته بندی ها</BoldText></Row>}
+                        ListHeaderComponent={() => <Row
+                            style={{paddingHorizontal: 10, justifyContent: 'flex-end', marginVertical: 10}}>
+                            <BoldText style={{fontSize: 18}} >یک دسته بندی را انتخاب کنید</BoldText>
+                        </Row>}
                     />
                 )
             }

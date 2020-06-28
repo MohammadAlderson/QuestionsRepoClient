@@ -1,5 +1,15 @@
 import React from 'react';
-import {Body, BoldText, Container, CustomHeader, CustomToast, NormalText, PrimaryButton, Row} from "../ui";
+import {
+    Body,
+    BoldText,
+    Container,
+    CustomHeader,
+    CustomToast,
+    NormalText,
+    PrimaryButton,
+    Row,
+    SecondaryButton
+} from "../ui";
 import {Icon} from "native-base";
 import {View, Modal, TextInput, ScrollView, TouchableOpacity, FlatList} from "react-native";
 import CheckBox from "@react-native-community/checkbox";
@@ -107,7 +117,9 @@ function AddQuestion(props) {
                 headers: {Accept: "application/json", "Content-Type": "application/json"}
             })
             let res = await response.json();
-            setCategoryList(res)
+            if (res.statusCode === 200) {
+                setCategoryList(res.data)
+            }
             console.log('res', res)
         } catch (e) {
             console.log(e)
@@ -242,7 +254,7 @@ function AddQuestion(props) {
                     </View>
                 </View>
                 <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
-                    <PrimaryButton onPress={() => createQuestion()} btnText="ارسال"/>
+                    <SecondaryButton onPress={() => createQuestion()} btnText="ارسال"/>
                 </View>
             </ScrollView>
         </Container>
