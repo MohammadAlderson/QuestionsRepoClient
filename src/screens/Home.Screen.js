@@ -26,10 +26,6 @@ function Home(props) {
                                    onPress={() => navigator('CategoriesList')}
                                    textStyle={{fontFamily: 'IRANYekanMobileBold', fontSize: 24}}
                                    style={{height: 75, borderRadius: 4}}/>
-                    {/*<PrimaryButton btnText="ایجاد سوال" onPress={() => navigator('AddQuestion')} />*/}
-                    {/*<PrimaryButton btnText="دسته بندی ها" onPress={() => navigator('CategoriesList')} />*/}
-                    {/*<PrimaryButton btnText="پروفایل من" onPress={() => navigator('Profile')} />*/}
-                    {/*<SecondaryButton btnText="خروج" onPress={() => logOutHandler()} />*/}
                 </View>
             </Body>
         </Container>

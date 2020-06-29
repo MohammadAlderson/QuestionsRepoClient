@@ -6,57 +6,17 @@ import {
     CustomHeader, LightText, SecondaryButton, PrimaryButton
 } from "../ui/index";
 import {UserContext} from "../context/UserContext";
-import AsyncStorage from "@react-native-community/async-storage";
-import {AuthContext} from "../../App";
 
 function Profile(props) {
 
-    const {setLoginHandler} = React.useContext(AuthContext);
 
-    const {userId} = React.useContext(UserContext);
-    const [userData, setUserData] = React.useState();
-    const [loading, setLoading] = React.useState(true);
+    const {userId, fetchUserData, loading, userData, logOutHandler} = React.useContext(UserContext);
 
     const [logoutModalState, setLogoutModalState] = React.useState(false);
 
-    const refreshData = async () => {
-        setLoading(true)
-        await getUserData();
-    }
-
-    async function getUserData() {
-        const url = 'http://192.168.43.92:4001/api/getUserData'
-        const body = JSON.stringify({
-            userId: userId
-        });
-        console.log('userId', userId)
-        try {
-            let response = await fetch(url, {
-                body,
-                method: 'POST',
-                headers: {Accept: "application/json", "Content-Type": "application/json"}
-            });
-            let res = await response.json();
-            console.log('res', res)
-            if (res.statusCode === 200) {
-                setUserData(res.data)
-                setLoading(false)
-            }
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
     React.useEffect(() => {
-        getUserData();
+        fetchUserData();
     }, [])
-
-    async function logOutHandler() {
-        await AsyncStorage.setItem('userId', '');
-        await AsyncStorage.setItem('isLogin', 'false');
-        setLoginHandler(false)
-    }
-
 
     return (
         <Container>
@@ -147,7 +107,7 @@ function Profile(props) {
                             <View
                                 style={{marginTop: 20, width: '100%', justifyContent: 'center', alignItems: 'center'}}>
                                 <SecondaryButton
-                                    onPress={() => props.navigation.navigate('EditProfile', {userId, refreshData})}
+                                    onPress={() => props.navigation.navigate('EditProfile')}
                                     style={{borderRadius: 4, width: 250, height: 55}} btnText="ویرایش پروفایل"/>
                                 <SecondaryButton
                                     onPress={() => props.navigation.navigate('UserQuestions', {userId})}

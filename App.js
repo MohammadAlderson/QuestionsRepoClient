@@ -11,7 +11,6 @@ import AddQuestion from "./src/screens/AddQuestion.Screen";
 import Login from "./src/screens/Login.Screen";
 import Register from "./src/screens/Register.Screen";
 import {Root} from 'native-base';
-// import AuthContextProvider from "./src/context/AuthContext";
 import UserContextProvider from "./src/context/UserContext";
 import SplashScreen from "./src/screens/SplashScreen.Screen";
 import EditProfile from "./src/screens/EditProfile.Screen";
@@ -113,7 +112,6 @@ function App() {
             <UserContextProvider>
                 <LoadingContext.Provider value={{loading, setLoadingHandler}}>
                     <NavigationContainer>
-
                         <Root>
                             <Stack.Navigator headerMode="none">
                                 {

@@ -9,12 +9,12 @@ function SplashScreen(props) {
 
     const {setLoginHandler} = React.useContext(AuthContext)
     const {setLoadingHandler} = React.useContext(LoadingContext)
-    const {setUserDataHandler} = React.useContext(UserContext);
+    const {setUserIdHandler} = React.useContext(UserContext);
     async function checkLoginState() {
         let loginState = await AsyncStorage.getItem('isLogin');
         if(loginState === 'true') {
             let userId = await AsyncStorage.getItem('userId')
-            setUserDataHandler(userId)
+            setUserIdHandler(userId)
             setLoginHandler(true);
             setLoadingHandler(false);
         } else {

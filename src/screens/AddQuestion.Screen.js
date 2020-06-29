@@ -18,6 +18,12 @@ import {domain, headers} from "../config";
 
 function AddQuestion(props) {
 
+    const questionInput = React.useRef();
+    const firstAnsInput = React.useRef();
+    const secondAnsInput = React.useRef();
+    const thirdAnsInput = React.useRef();
+    const forthAnsInput = React.useRef();
+
     const {userId} = React.useContext(UserContext);
 
     const [question, setQuestion] = React.useState('')
@@ -56,7 +62,7 @@ function AddQuestion(props) {
     }
 
     async function createQuestion() {
-
+        console.log('questionInput', questionInput)
         /***
          *
          * @param questionText @type {String}
@@ -102,6 +108,11 @@ function AddQuestion(props) {
                     setSecondAnsCorrect(false);
                     setThirdAnsCorrect(false);
                     setForthAnsCorrect(false);
+                    questionInput.current && questionInput.current.clear();
+                    firstAnsInput.current && firstAnsInput.current.clear();
+                    secondAnsInput.current && secondAnsInput.current.clear();
+                    thirdAnsInput.current && thirdAnsInput.current.clear();
+                    forthAnsInput.current && forthAnsInput.current.clear();
                 }
             } catch (e) {
                 console.log(e)
@@ -110,7 +121,7 @@ function AddQuestion(props) {
     }
 
     async function getCategories() {
-        const url = 'http://192.168.43.92:4001/api/getAllCategories'
+        const url = `${domain}/api/getAllCategories`
         try {
             let response = await fetch(url, {
                 method: 'POST',
@@ -169,6 +180,7 @@ function AddQuestion(props) {
                 <View style={{alignItems: 'center', marginVertical: 10}}>
                     <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>سوال:</BoldText>
                     <TextInput
+                        ref={questionInput}
                         onChangeText={(text) => setQuestion(text)}
                         underlineColorAndroid="#354561"
                         style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
@@ -197,6 +209,7 @@ function AddQuestion(props) {
                                 setForthAnsCorrect(false);
                             }}/>
                             <TextInput
+                                ref={firstAnsInput}
                                 onChangeText={(text) => setFirstAns(text)}
                                 underlineColorAndroid="#354561"
                                 style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
@@ -214,6 +227,7 @@ function AddQuestion(props) {
                                 setForthAnsCorrect(false);
                             }}/>
                             <TextInput
+                                ref={secondAnsInput}
                                 onChangeText={(text) => setSecondAns(text)}
                                 underlineColorAndroid="#354561"
                                 style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
@@ -230,6 +244,7 @@ function AddQuestion(props) {
                                 setForthAnsCorrect(false);
                             }}/>
                             <TextInput
+                                ref={thirdAnsInput}
                                 onChangeText={(text) => setThirdAns(text)}
                                 underlineColorAndroid="#354561"
                                 style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
@@ -246,6 +261,7 @@ function AddQuestion(props) {
                                 setThirdAnsCorrect(false);
                             }}/>
                             <TextInput
+                                ref={forthAnsInput}
                                 onChangeText={(text) => setForthAns(text)}
                                 underlineColorAndroid="#354561"
                                 style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}

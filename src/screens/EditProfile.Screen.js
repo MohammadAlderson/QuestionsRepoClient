@@ -2,17 +2,25 @@ import React from 'react';
 import {BoldText, Container, CustomHeader, CustomToast, PrimaryButton, Row} from "../ui";
 import {ScrollView, TextInput, View} from "react-native";
 import {domain, headers} from "../config";
+import {UserContext} from "../context/UserContext";
+
 function EditProfile(props) {
-    const params = props.route.params
+    const {fetchUserData, handleLoader, userId} = React.useContext(UserContext);
     const [displayName, setDisplayName] = React.useState('')
     const [email, setEmail] = React.useState('')
+
+    function refreshUserDataHandler() {
+        fetchUserData();
+        handleLoader(true);
+    }
+
     async function editProfileHandler() {
 
         if (displayName === '' && email === '') {
             CustomToast('لطفا اطلاعات را وارد کنید', 4000, "danger")
         } else {
             const body = JSON.stringify({
-                userId: params.userId,
+                userId: userId,
                 displayName,
                 email
             })
@@ -21,7 +29,7 @@ function EditProfile(props) {
             let res = await response.json();
             if (res.statusCode === 200) {
                 CustomToast('اطلاعات با موفقیت تغییر یافت', 3000, "success")
-                params.refreshData();
+                refreshUserDataHandler();
                 props.navigation.goBack();
             } else {
                 CustomToast('عدم برقراری ارتباط با سرور', 3000, "danger")

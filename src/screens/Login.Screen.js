@@ -10,7 +10,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 function Login(props) {
 
     const {setLoginHandler} = React.useContext(AuthContext);
-    const {setUserDataHandler} = React.useContext(UserContext);
+    const {setUserIdHandler} = React.useContext(UserContext);
     const [userName, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
 
@@ -28,7 +28,7 @@ function Login(props) {
                 await AsyncStorage.setItem('isLogin', 'true')
                 await AsyncStorage.setItem('userId', res.data.id)
                 setLoginHandler(true);
-                setUserDataHandler(res.data.id);
+                setUserIdHandler(res.data.id);
             }
         } catch (e) {
             console.log(e)
