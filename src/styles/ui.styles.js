@@ -1,8 +1,5 @@
 import {StyleSheet} from 'react-native';
-
-const mediumFont = 'IRANYekanMobileMedium'
-const boldFont = 'IRANYekanMobileBold'
-const lightFont = 'IRANYekanMobileLight'
+import {mediumFont, boldFont, lightFont} from './fonts'
 
 const styles = StyleSheet.create({
     container: {
@@ -20,16 +17,15 @@ const styles = StyleSheet.create({
         borderColor: '#874fcc'
     },
     secondaryButtonBackgroundColor: {
-        backgroundColor: '#874fcc',
-        // borderWidth: 1.5,
-        // borderColor: '#FFFFFE',
-        elevation: 2
+        backgroundColor: '#FFFFFE',
+        borderWidth: 1.5,
+        borderColor: '#874fcc',
     },
     primaryButtonFontColor: {
-        color: '#874fcc',
+        color: '#FFFFFE',
     },
     secondaryButtonFontColor: {
-        color: '#FFFFFE',
+        color: '#874fcc',
     },
     buttonContainer: {
         height: 50,

@@ -6,5 +6,6 @@ import Container from "./Container.Ui";
 import Body from "./Body";
 import CustomHeader from './Header'
 import CustomToast from "./Toast";
+import CustomTextInput from './TextInput'
 
-export {Row, BoldText, NormalText, LightText, PrimaryButton, Container, SecondaryButton, Body, CustomHeader, CustomToast}
+export {Row, BoldText, NormalText, LightText, PrimaryButton, Container, SecondaryButton, Body, CustomHeader, CustomToast, CustomTextInput}

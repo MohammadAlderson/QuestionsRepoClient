@@ -3,6 +3,7 @@ import {BoldText, Container, CustomHeader, CustomToast, PrimaryButton, Row} from
 import {ScrollView, TextInput, View} from "react-native";
 import {domain, headers} from "../config";
 import {UserContext} from "../context/UserContext";
+import AuthStyles from "../styles/Auth.styles";
 
 function EditProfile(props) {
     const {fetchUserData, handleLoader, userId} = React.useContext(UserContext);
@@ -42,19 +43,17 @@ function EditProfile(props) {
             <CustomHeader title="ویرایش پروفایل" navigation={props.navigation} backBtn />
             <ScrollView style={{paddingVertical: 10, paddingHorizontal: 10}}>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>نام:</BoldText>
+                    <BoldText style={[AuthStyles.textInputTitle, {alignSelf: 'flex-end'}]}>نام:</BoldText>
                     <TextInput
                         onChangeText={(text) => setDisplayName(text)}
-                        underlineColorAndroid="#354561"
-                        style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                        style={AuthStyles.textInput}
                     />
                 </View>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>ایمیل:</BoldText>
+                    <BoldText style={[AuthStyles.textInputTitle, {alignSelf: 'flex-end'}]}>ایمیل:</BoldText>
                     <TextInput
                         onChangeText={(text) => setEmail(text)}
-                        underlineColorAndroid="#354561"
-                        style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                        style={AuthStyles.textInput}
                     />
                 </View>
                 <Row style={{width: '100%', justifyContent: 'center', marginTop: 20}}>

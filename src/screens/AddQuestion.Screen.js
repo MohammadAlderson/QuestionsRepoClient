@@ -11,10 +11,11 @@ import {
     SecondaryButton
 } from "../ui";
 import {Icon} from "native-base";
-import {View, Modal, TextInput, ScrollView, TouchableOpacity, FlatList} from "react-native";
+import {View, Modal, TextInput, ScrollView, TouchableOpacity, FlatList, StyleSheet} from "react-native";
 import CheckBox from "@react-native-community/checkbox";
 import {UserContext} from "../context/UserContext";
 import {domain, headers} from "../config";
+import LinearGradient from "react-native-linear-gradient";
 
 function AddQuestion(props) {
 
@@ -152,7 +153,7 @@ function AddQuestion(props) {
                 <View style={{flex: 1, backgroundColor: '#0000008a',}}>
                     <View style={{padding: 10, margin: 20, backgroundColor: '#fff', borderRadius: 10, flex: 1}}>
                         <TouchableOpacity
-                            style={{alignSelf: 'flex-end'}}
+                            style={{alignSelf: 'flex-end', paddingRight: 10,color: '#194b9a', }}
                             onPress={() => setCategoryModalState(false)}
                         >
                             <Icon name="md-close" type="Ionicons" style={{color: '#354561'}} />
@@ -182,27 +183,29 @@ function AddQuestion(props) {
                     <TextInput
                         ref={questionInput}
                         onChangeText={(text) => setQuestion(text)}
-                        underlineColorAndroid="#354561"
-                        style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                        style={[addQuestionStyles.input, {alignSelf: 'flex-end', marginTop: 16, width: '100%'}]}
                     />
                 </View>
                 <View style={{marginVertical: 10}}>
                     <BoldText style={{fontSize: 17, marginBottom: 8}}>دسته بندی:</BoldText>
                     <TouchableOpacity
+                        activeOpacity={0.8}
                         onPress={() => setCategoryModalState(true)}
                     >
                         <Row style={{justifyContent: 'flex-end'}}>
-                            <Icon name="md-arrow-dropdown" type="Ionicons" style={{color: '#354561', marginRight: 10}}/>
-                            <NormalText style={{fontSize: 16}}>{categoryName}</NormalText>
+                            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#194b9a', '#4b6cb7']} style={{elevation: 2,flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 40, width: 200, borderRadius: 4}}>
+                                <Icon name="md-arrow-dropdown" type="Ionicons" style={{color: '#FFFFFE', marginRight: 10}}/>
+                                <NormalText style={{color: '#FFFFFE', fontSize: 16}}>{categoryName}</NormalText>
+                            </LinearGradient>
                         </Row>
                     </TouchableOpacity>
                 </View>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
                     <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>پاسخ ها:</BoldText>
                     <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15}}>پاسخ 1:</NormalText>
-                        <Row style={{width: '100%', alignItems: 'center'}}>
-                            <CheckBox value={firstAnsCorrect} onValueChange={() => {
+                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 1:</NormalText>
+                        <Row style={addQuestionStyles.inputRow}>
+                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={firstAnsCorrect} onValueChange={() => {
                                 setFirstAnsCorrect(true);
                                 setSecondAnsCorrect(false);
                                 setThirdAnsCorrect(false);
@@ -211,16 +214,16 @@ function AddQuestion(props) {
                             <TextInput
                                 ref={firstAnsInput}
                                 onChangeText={(text) => setFirstAns(text)}
-                                underlineColorAndroid="#354561"
-                                style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                                // underlineColorAndroid="#354561"
+                                style={addQuestionStyles.input}
                             />
 
                         </Row>
                     </View>
                     <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15}}>پاسخ 2:</NormalText>
-                        <Row style={{width: '100%'}}>
-                            <CheckBox value={secondAnsCorrect} onValueChange={() => {
+                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 2:</NormalText>
+                        <Row style={addQuestionStyles.inputRow}>
+                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={secondAnsCorrect} onValueChange={() => {
                                 setSecondAnsCorrect(true);
                                 setFirstAnsCorrect(false);
                                 setThirdAnsCorrect(false);
@@ -229,15 +232,15 @@ function AddQuestion(props) {
                             <TextInput
                                 ref={secondAnsInput}
                                 onChangeText={(text) => setSecondAns(text)}
-                                underlineColorAndroid="#354561"
-                                style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                                // underlineColorAndroid="#354561"
+                                style={addQuestionStyles.input}
                             />
                         </Row>
                     </View>
                     <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15}}>پاسخ 3:</NormalText>
-                        <Row style={{width: '100%'}}>
-                            <CheckBox value={thirdAnsCorrect} onValueChange={() => {
+                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 3:</NormalText>
+                        <Row style={addQuestionStyles.inputRow}>
+                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={thirdAnsCorrect} onValueChange={() => {
                                 setThirdAnsCorrect(true);
                                 setFirstAnsCorrect(false);
                                 setSecondAnsCorrect(false);
@@ -246,15 +249,15 @@ function AddQuestion(props) {
                             <TextInput
                                 ref={thirdAnsInput}
                                 onChangeText={(text) => setThirdAns(text)}
-                                underlineColorAndroid="#354561"
-                                style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                                // underlineColorAndroid="#354561"
+                                style={addQuestionStyles.input}
                             />
                         </Row>
                     </View>
                     <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15}}>پاسخ 4:</NormalText>
-                        <Row style={{width: '100%'}}>
-                            <CheckBox value={forthAnsCorrect} onValueChange={() => {
+                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 4:</NormalText>
+                        <Row style={addQuestionStyles.inputRow}>
+                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={forthAnsCorrect} onValueChange={() => {
                                 setForthAnsCorrect(true);
                                 setFirstAnsCorrect(false);
                                 setSecondAnsCorrect(false);
@@ -263,18 +266,23 @@ function AddQuestion(props) {
                             <TextInput
                                 ref={forthAnsInput}
                                 onChangeText={(text) => setForthAns(text)}
-                                underlineColorAndroid="#354561"
-                                style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                                // underlineColorAndroid="#354561"
+                                style={addQuestionStyles.input}
                             />
                         </Row>
                     </View>
                 </View>
                 <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
-                    <SecondaryButton onPress={() => createQuestion()} btnText="ارسال"/>
+                    <PrimaryButton style={{width: '90%'}} onPress={() => createQuestion()} btnText="ارسال"/>
                 </View>
             </ScrollView>
         </Container>
     )
 }
+
+const addQuestionStyles = StyleSheet.create({
+    inputRow: {width: '100%', alignItems: 'center', justifyContent: 'space-between', marginTop: 16},
+    input: {width: '90%', fontFamily: 'IRANYekanMobileMedium', borderWidth: 1, borderColor: '#194b9a', paddingHorizontal: 8, fontSize: 16}
+})
 
 export default AddQuestion

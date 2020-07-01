@@ -5,6 +5,7 @@ import RegisterIcon from './../../assets/icons/register.svg'
 import {AuthContext} from "../../App";
 import {UserContext} from "../context/UserContext";
 import AsyncStorage from "@react-native-community/async-storage";
+import AuthStyles from "../styles/Auth.styles";
 
 function Register(props) {
 
@@ -51,26 +52,23 @@ function Register(props) {
                 <BoldText style={{fontSize: 30}}>عضویت</BoldText>
                 <View style={{width: '100%', paddingVertical: 10, paddingHorizontal: 20, marginTop: 20}}>
                     <View style={{width: '100%', marginVertical: 10}}>
-                        <BoldText>نام کاربری</BoldText>
+                        <BoldText style={AuthStyles.textInputTitle}>نام کاربری</BoldText>
                         <TextInput
                             onChangeText={text => setUserName(text)}
-                            underlineColorAndroid="#354561"
-                            style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                            style={AuthStyles.textInput}
                         />
                     </View>
                     <View style={{width: '100%', marginVertical: 10}}>
-                        <BoldText>کلمه عبور</BoldText>
+                        <BoldText style={AuthStyles.textInputTitle}>کلمه عبور</BoldText>
                         <TextInput
                             onChangeText={text => setPassword(text)}
-                            underlineColorAndroid="#354561"
-                            style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                            style={AuthStyles.textInput}
                         />
                         <View style={{width: '100%', marginVertical: 10}}>
-                            <BoldText>تکرار کلمه عبور</BoldText>
+                            <BoldText style={AuthStyles.textInputTitle}>تکرار کلمه عبور</BoldText>
                             <TextInput
                                 onChangeText={text => setRepeatPassword(text)}
-                                underlineColorAndroid="#354561"
-                                style={{width: '100%', fontFamily: 'IRANYekanMobileMedium'}}
+                                style={AuthStyles.textInput}
                             />
                         </View>
                     </View>
