@@ -7,5 +7,6 @@ import Body from "./Body";
 import CustomHeader from './Header'
 import CustomToast from "./Toast";
 import CustomTextInput from './TextInput'
+import Gradient from './Gradient'
 
-export {Row, BoldText, NormalText, LightText, PrimaryButton, Container, SecondaryButton, Body, CustomHeader, CustomToast, CustomTextInput}
+export {Row, BoldText, NormalText, LightText, PrimaryButton, Container, SecondaryButton, Body, CustomHeader, CustomToast, CustomTextInput, Gradient}

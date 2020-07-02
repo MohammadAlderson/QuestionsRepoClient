@@ -1,12 +1,14 @@
 import React from 'react';
-import {TextInput, View} from 'react-native'
-import {Body, BoldText, Container, PrimaryButton, Row, SecondaryButton} from "../ui";
+import {StatusBar, TextInput, View} from 'react-native'
+import {Body, BoldText, Container, Gradient, PrimaryButton, Row, SecondaryButton} from "../ui";
 import LoginIcon from './../../assets/icons/login.svg'
 // import {AuthContext} from "../context/AuthContext";
 import {UserContext} from "../context/UserContext";
 import {AuthContext} from "../../App";
 import AsyncStorage from "@react-native-community/async-storage";
 import AuthStyles from "../styles/Auth.styles";
+import {colors, end, locations, start} from "../ui/GradientConfig";
+import LinearGradient from "react-native-linear-gradient";
 
 function Login(props) {
 
@@ -38,6 +40,10 @@ function Login(props) {
 
     return (
         <Container>
+            <View>
+                <LinearGradient locations={locations} start={start} end={end} colors={colors} style={{height: StatusBar.currentHeight}}/>
+            </View>
+            <StatusBar translucent={true} backgroundColor="transparent"/>
             <Body>
                 <LoginIcon width={120} height={120} />
                 <BoldText style={{fontSize: 30}}>ورود</BoldText>

@@ -1,9 +1,11 @@
 import React from 'react';
-import {ActivityIndicator} from 'react-native'
-import {Body, Container, NormalText} from "../ui";
+import {ActivityIndicator, StatusBar, View} from 'react-native'
+import {Body, Container, Gradient, NormalText} from "../ui";
 import AsyncStorage from "@react-native-community/async-storage";
 import {AuthContext, LoadingContext} from "../../App";
 import {UserContext} from "../context/UserContext";
+import LinearGradient from "react-native-linear-gradient";
+import {colors, end, locations, start} from "../ui/GradientConfig";
 
 function SplashScreen(props) {
 
@@ -30,6 +32,10 @@ function SplashScreen(props) {
 
     return (
         <Container>
+            <View>
+                <LinearGradient locations={locations} start={start} end={end} colors={colors} style={{height: StatusBar.currentHeight}}/>
+            </View>
+            <StatusBar translucent={true} backgroundColor="transparent"/>
             <Body>
                 <ActivityIndicator size="large" />
             </Body>

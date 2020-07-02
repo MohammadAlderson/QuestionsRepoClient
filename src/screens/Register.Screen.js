@@ -1,11 +1,13 @@
 import React from 'react';
-import {TextInput, View} from 'react-native'
-import {Body, BoldText, Container, CustomToast, PrimaryButton, Row} from "../ui";
+import {StatusBar, TextInput, View} from 'react-native'
+import {Body, BoldText, Container, CustomToast, Gradient, PrimaryButton, Row} from "../ui";
 import RegisterIcon from './../../assets/icons/register.svg'
 import {AuthContext} from "../../App";
 import {UserContext} from "../context/UserContext";
 import AsyncStorage from "@react-native-community/async-storage";
 import AuthStyles from "../styles/Auth.styles";
+import LinearGradient from "react-native-linear-gradient";
+import {colors, end, locations, start} from "../ui/GradientConfig";
 
 function Register(props) {
 
@@ -47,6 +49,10 @@ function Register(props) {
 
     return (
         <Container>
+            <View>
+                <LinearGradient locations={locations} start={start} end={end} colors={colors} style={{height: StatusBar.currentHeight}}/>
+            </View>
+            <StatusBar translucent={true} backgroundColor="transparent"/>
             <Body>
                 <RegisterIcon width={120} height={120} />
                 <BoldText style={{fontSize: 30}}>عضویت</BoldText>

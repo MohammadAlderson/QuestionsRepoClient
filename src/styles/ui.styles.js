@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     primaryButtonBackgroundColor: {
-        backgroundColor: '#FFFFFE',
-        borderWidth: 1.5,
-        borderColor: '#874fcc'
+        // backgroundColor: '#FFFFFE',
+        // borderWidth: 1.5,
+        // borderColor: '#874fcc'
     },
     secondaryButtonBackgroundColor: {
         backgroundColor: '#FFFFFE',

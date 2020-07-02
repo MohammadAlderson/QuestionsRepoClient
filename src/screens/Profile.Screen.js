@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, ActivityIndicator, ScrollView, Modal} from 'react-native';
-import User from './../../assets/icons/user.svg'
+import {View, ActivityIndicator, ScrollView, Modal, StatusBar} from 'react-native';
+import User from './../../assets/icons/profile/user.svg'
+import Questions from './../../assets/icons/profile/questions.svg'
+import Answers from './../../assets/icons/profile/answers.svg'
 import {
     Row, BoldText, NormalText, Container,
-    CustomHeader, LightText, SecondaryButton, PrimaryButton
+    CustomHeader, LightText, SecondaryButton, PrimaryButton, Gradient
 } from "../ui/index";
 import {UserContext} from "../context/UserContext";
 import LinearGradient from "react-native-linear-gradient";
+import {colors, end, locations, start} from "../ui/GradientConfig";
 
 function Profile(props) {
 
@@ -21,7 +24,10 @@ function Profile(props) {
 
     return (
         <Container>
-            <CustomHeader title="پروفایل" navigation={props.navigation}/>
+            <View>
+                <LinearGradient locations={locations} start={start} end={end} colors={colors} style={{height: StatusBar.currentHeight}}/>
+            </View>
+            <StatusBar translucent={true} backgroundColor="transparent"/>
             <Modal
                 animationType="fade"
                 visible={logoutModalState}
@@ -60,54 +66,70 @@ function Profile(props) {
                 {
                     loading ? (
                         <View style={{
-                            backgroundColor: '#874fcc',
-                            height: 220,
+                            height: 250,
                             width: '100%',
                             alignItems: 'center',
                             marginBottom: 10
                         }}>
+                            <Gradient>
                             <ActivityIndicator size="large" color="#FFFFFE"/>
+                            </Gradient>
                         </View>
                     ) : (
                         <>
                             <View style={{
-                                backgroundColor: '#874fcc',
-                                height: 220,
+                                height: 250,
                                 width: '100%',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 marginBottom: 10
                             }}>
-                                <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#194b9a', '#4b6cb7']} style={{width: '100%', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                <Gradient>
                                     <User width={90} height={90}/>
                                     <View style={{marginVertical: 8, alignItems: 'center'}}>
                                         <BoldText style={{fontSize: 24, color: '#FFFFFE'}}>{userData.displayName}</BoldText>
                                         <LightText style={{fontSize: 20, color: '#FFFFFE'}}>@{userData.userName}</LightText>
                                     </View>
-                                </LinearGradient>
+                                </Gradient>
                             </View>
-                            <Row style={{width: '100%'}}>
+                            <Row style={{width: '100%', justifyContent: 'space-around'}}>
                                 <Row style={{
                                     alignItems: 'center',
-                                    width: '100%',
                                     justifyContent: 'space-between',
                                     height: 60,
                                     paddingHorizontal: 40,
-                                    flex: 1,
+                                    width: 150,
+                                    backgroundColor: '#fff',
+                                    elevation: 2,
+                                    borderRadius: 4
                                 }}>
-                                    <NormalText style={{fontSize: 20, color: '#4b6cb7' }}>{userData.ansCount}</NormalText>
-                                    <BoldText style={{fontSize: 20, color: '#194b9a'}}>جواب ها</BoldText>
+
+                                    <View style={{alignItems: 'flex-end', marginRight: 10, justifyContent: 'center'}}>
+                                        <LightText style={{fontSize: 14, color: '#194b9a'}}>جواب ها</LightText>
+                                        <BoldText style={{fontSize: 19, color: '#194b9a' }}>{userData.ansCount}</BoldText>
+                                    </View>
+                                    <View style={{backgroundColor: 'rgba(36,210,146,0.27)', width: 35, height: 35, borderRadius: 4, justifyContent: 'center', alignItems: 'center'}}>
+                                        <Answers width={15} height={15} />
+                                    </View>
                                 </Row>
                                 <Row style={{
                                     alignItems: 'center',
-                                    width: '100%',
                                     justifyContent: 'space-between',
                                     height: 60,
-                                    flex: 1,
-                                    paddingHorizontal: 40
+                                    paddingHorizontal: 40,
+                                    width: 150,
+                                    backgroundColor: '#fff',
+                                    elevation: 2,
+                                    borderRadius: 4
                                 }}>
-                                    <NormalText style={{fontSize: 20, color: '#4b6cb7'}}>{userData.questionCount}</NormalText>
-                                    <BoldText style={{fontSize: 20, color: '#194b9a'}}>سوالات</BoldText>
+                                    <View style={{alignItems: 'flex-end', marginRight: 10, justifyContent: 'center'}}>
+                                        <LightText style={{fontSize: 14, color: '#194b9a'}}>سوالات</LightText>
+                                        <BoldText style={{fontSize: 19, color: '#194b9a'}}>{userData.questionCount}</BoldText>
+                                    </View>
+                                    <View style={{backgroundColor: 'rgba(36,210,146,0.27)', width: 35, height: 35, borderRadius: 4, justifyContent: 'center', alignItems: 'center'}}>
+                                        <Questions width={15} height={15} />
+                                    </View>
+
                                 </Row>
                             </Row>
                             <View

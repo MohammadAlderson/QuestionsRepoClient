@@ -4,7 +4,7 @@ import {
     BoldText,
     Container,
     CustomHeader,
-    CustomToast,
+    CustomToast, Gradient,
     NormalText,
     PrimaryButton,
     Row,
@@ -193,10 +193,10 @@ function AddQuestion(props) {
                         onPress={() => setCategoryModalState(true)}
                     >
                         <Row style={{justifyContent: 'flex-end'}}>
-                            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#194b9a', '#4b6cb7']} style={{elevation: 2,flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 40, width: 200, borderRadius: 4}}>
+                            <Gradient style={{elevation: 2,flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 50, width: 200, borderRadius: 4, marginHorizontal: 8 }}>
                                 <Icon name="md-arrow-dropdown" type="Ionicons" style={{color: '#FFFFFE', marginRight: 10}}/>
                                 <NormalText style={{color: '#FFFFFE', fontSize: 16}}>{categoryName}</NormalText>
-                            </LinearGradient>
+                            </Gradient>
                         </Row>
                     </TouchableOpacity>
                 </View>
