@@ -4,12 +4,19 @@ import {mediumFont, boldFont, lightFont} from './fonts'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-            backgroundColor: '#FFFFFE'
+            backgroundColor: '#f6f6f6'
     },
     body: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    normalButton : {
+        backgroundColor: '#FFFFFE',
+        borderWidth: 1.5,
+        borderColor: '#874fcc',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     primaryButtonBackgroundColor: {
         // backgroundColor: '#FFFFFE',
@@ -25,7 +32,20 @@ const styles = StyleSheet.create({
         color: '#FFFFFE',
     },
     secondaryButtonFontColor: {
-        color: '#874fcc',
+        color: '#d558c8',
+    },
+    secondaryButtonGradient: {
+        elevation: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    secondaryButtonContainer: {
+        borderRadius: 4,
+        backgroundColor: '#fff',
+        width: '99.2%',
+        height: '95%',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     buttonContainer: {
         height: 50,

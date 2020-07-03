@@ -19,26 +19,31 @@ function Home(props) {
                 <Gradient style={{height: StatusBar.currentHeight}}/>
             </View>
             <StatusBar translucent={true} backgroundColor="transparent"/>
-            <Body style={{paddingTop: 0, justifyContent: 'flex-start'}}>
+            <Gradient>
                 <View style={{
-                    height: 300,
+                    height: '50%',
                     width: '100%',
                     justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#874fcc'
+                    alignItems: 'center'
                 }}>
-                    <Gradient>
-                        <Logo width={100} height={100}/>
-                        <BoldText style={{color: '#FFFFFE', fontSize: 40, marginTop: 10}}>کوییز</BoldText>
-                    </Gradient>
+                    <Logo width={100} height={100}/>
+                    <BoldText style={{color: '#FFFFFE', fontSize: 40, marginTop: 10}}>کوییز</BoldText>
                 </View>
-                <View style={{marginTop: 50}}>
+                <View style={{
+                    height: '50%',
+                    backgroundColor: '#f6f6f6',
+                    width: '100%',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    borderTopLeftRadius: 24,
+                    borderTopRightRadius: 24
+                }}>
                     <PrimaryButton btnText="شروع"
                                    onPress={() => navigator('CategoriesList')}
                                    textStyle={{fontFamily: 'IRANYekanMobileBold', fontSize: 24}}
-                                   style={{height: 75, borderRadius: 4}}/>
+                                   style={{height: 75, borderRadius: 4, marginTop: 60}}/>
                 </View>
-            </Body>
+            </Gradient>
         </Container>
     )
 }

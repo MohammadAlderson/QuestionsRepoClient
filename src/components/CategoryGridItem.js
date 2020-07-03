@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {TouchableOpacity, Text, StyleSheet} from 'react-native'
 import {SecondaryButton} from "../ui";
 import Technology from './../../assets/icons/categories/technology.svg'
 import Sports from './../../assets/icons/categories/sports.svg'
@@ -40,10 +40,15 @@ function CategoryGridItem(props) {
     }
 
     return (
-        <View style={CategoryGridStyles.container}>
+        <TouchableOpacity
+            onPress={() => props.navigation.navigate('BeforeQuiz', {
+                categoryId: props.item._id,
+                categoryName: props.item.name
+            })}
+            style={CategoryGridStyles.container}>
             {icon}
             <Text style={CategoryGridStyles.text}>{props.item.name}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 

@@ -18,7 +18,7 @@ function UserQuestions(props) {
         try {
             let response = await fetch(url, {body, method: 'POST', headers})
             let res = await response.json();
-            console.log('res',res)
+            console.log('res', res)
             if (res.statusCode === 200) {
                 console.log('res.data', res.data)
                 setUserQuestions(res.data)
@@ -36,14 +36,14 @@ function UserQuestions(props) {
 
     return (
         <Container>
-            <CustomHeader navigation={props.navigation} backBtn title="سوال های من"  />
+            <CustomHeader navigation={props.navigation} backBtn title="سوال های من"/>
             {loading ? (
                 <View style={{
                     width: '100%',
                     alignItems: 'center',
                     marginBottom: 10
                 }}>
-                    <ActivityIndicator size="large" color="#874fcc" />
+                    <ActivityIndicator size="large" color="#874fcc"/>
                 </View>
             ) : (
                 <FlatList
@@ -53,9 +53,21 @@ function UserQuestions(props) {
                     renderItem={({item}) => {
                         console.log('item', item)
                         return (
-                            <View style={{width: '100%', elevation: 2, alignItems: 'flex-end', justifyContent: 'space-between', padding: 10, height: 80, backgroundColor: '#eeefff', marginVertical: 5}}>
-                                {item.questionText && <BoldText style={{fontSize: 18, color: '#000059'}}>{item.questionText}</BoldText>}
-                                {item.categoryName && <LightText style={{fontSize: 16, color: '#000'}}>{item.categoryName}</LightText>}
+                            <View style={{
+                                width: '100%',
+                                elevation: 2,
+                                alignItems: 'flex-end',
+                                justifyContent: 'space-between',
+                                padding: 10,
+                                height: 80,
+                                backgroundColor: '#fff',
+                                marginVertical: 5,
+                                borderRadius: 4
+                            }}>
+                                {item.questionText &&
+                                    <BoldText style={{fontSize: 18, color: '#000059'}}>{item.questionText}</BoldText>}
+                                {item.categoryName &&
+                                    <NormalText style={{fontSize: 16, color: '#d558c8'}}>{item.categoryName}</NormalText>}
                             </View>
                         )
                     }}

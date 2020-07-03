@@ -1,5 +1,5 @@
 import React from 'react';
-import {BoldText, Container, CustomHeader, CustomToast, PrimaryButton, Row} from "../ui";
+import {BoldText, Container, CustomHeader, CustomTextInput, CustomToast, PrimaryButton, Row} from "../ui";
 import {ScrollView, TextInput, View} from "react-native";
 import {domain, headers} from "../config";
 import {UserContext} from "../context/UserContext";
@@ -42,20 +42,16 @@ function EditProfile(props) {
         <Container>
             <CustomHeader title="ویرایش پروفایل" navigation={props.navigation} backBtn />
             <ScrollView style={{paddingVertical: 10, paddingHorizontal: 10}}>
-                <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={[AuthStyles.textInputTitle, {alignSelf: 'flex-end'}]}>نام:</BoldText>
-                    <TextInput
-                        onChangeText={(text) => setDisplayName(text)}
-                        style={AuthStyles.textInput}
-                    />
-                </View>
-                <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={[AuthStyles.textInputTitle, {alignSelf: 'flex-end'}]}>ایمیل:</BoldText>
-                    <TextInput
-                        onChangeText={(text) => setEmail(text)}
-                        style={AuthStyles.textInput}
-                    />
-                </View>
+                <CustomTextInput
+                    placeholder='نام...'
+                    onChangeText={(text) => setDisplayName(text)}
+                    inputTitle="نام"
+                />
+                <CustomTextInput
+                    placeholder='ایمیل...'
+                    onChangeText={(text) => setEmail(text)}
+                    inputTitle="ایمیل"
+                />
                 <Row style={{width: '100%', justifyContent: 'center', marginTop: 20}}>
                     <PrimaryButton
                         onPress={() => editProfileHandler()}

@@ -41,7 +41,7 @@ function CategoriesList(props) {
                         data={categoryList}
                         keyExtractor={item => item._id}
                         numColumns={2}
-                        renderItem={({item}) => <CategoryGridItem item={item} />}
+                        renderItem={({item}) => <CategoryGridItem item={item} {...props} />}
                         ListHeaderComponent={() => <Row
                             style={{paddingHorizontal: 10, justifyContent: 'flex-end', marginVertical: 10}}>
                             <BoldText style={{fontSize: 18, color: '#874fcc'}}>یک دسته بندی را انتخاب کنید</BoldText>

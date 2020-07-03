@@ -3,7 +3,7 @@ import {
     Body,
     BoldText,
     Container,
-    CustomHeader,
+    CustomHeader, CustomTextInput,
     CustomToast, Gradient,
     NormalText,
     PrimaryButton,
@@ -45,13 +45,13 @@ function AddQuestion(props) {
     const [forthAns, setForthAns] = React.useState('')
 
     function questionValidator() {
-        if(question === '') {
+        if (question === '') {
             CustomToast('لطفا سوال را وارد کنید!', 4000, "danger")
             return false;
-        } else if(firstAns === '' || secondAns === '' || thirdAns === '' || forthAns === '') {
+        } else if (firstAns === '' || secondAns === '' || thirdAns === '' || forthAns === '') {
             CustomToast('لطفا پاسخ ها را وارد کنید!', 4000, "danger")
             return false;
-        } else if(!firstAnsCorrect && !secondAnsCorrect && !thirdAnsCorrect && !forthAnsCorrect) {
+        } else if (!firstAnsCorrect && !secondAnsCorrect && !thirdAnsCorrect && !forthAnsCorrect) {
             CustomToast('لطفا جواب صحیح را مشخص کنید!', 4000, "danger")
             return false;
         } else if (categoryId === '') {
@@ -153,10 +153,10 @@ function AddQuestion(props) {
                 <View style={{flex: 1, backgroundColor: '#0000008a',}}>
                     <View style={{padding: 10, margin: 20, backgroundColor: '#fff', borderRadius: 10, flex: 1}}>
                         <TouchableOpacity
-                            style={{alignSelf: 'flex-end', paddingRight: 10,color: '#194b9a', }}
+                            style={{alignSelf: 'flex-end', paddingRight: 10, color: '#194b9a',}}
                             onPress={() => setCategoryModalState(false)}
                         >
-                            <Icon name="md-close" type="Ionicons" style={{color: '#354561'}} />
+                            <Icon name="md-close" type="Ionicons" style={{color: '#354561'}}/>
                         </TouchableOpacity>
                         <FlatList
                             data={categoryList}
@@ -179,11 +179,11 @@ function AddQuestion(props) {
             <CustomHeader title="ایجاد سوال" navigation={props.navigation}/>
             <ScrollView style={{paddingVertical: 10, paddingHorizontal: 10}}>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>سوال:</BoldText>
-                    <TextInput
-                        ref={questionInput}
+                    <CustomTextInput
+                        inputRef={questionInput}
+                        placeholder='سوال...'
                         onChangeText={(text) => setQuestion(text)}
-                        style={[addQuestionStyles.input, {alignSelf: 'flex-end', marginTop: 16, width: '100%'}]}
+                        inputTitle="سوال:"
                     />
                 </View>
                 <View style={{marginVertical: 10}}>
@@ -193,84 +193,50 @@ function AddQuestion(props) {
                         onPress={() => setCategoryModalState(true)}
                     >
                         <Row style={{justifyContent: 'flex-end'}}>
-                            <Gradient style={{elevation: 2,flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 50, width: 200, borderRadius: 4, marginHorizontal: 8 }}>
-                                <Icon name="md-arrow-dropdown" type="Ionicons" style={{color: '#FFFFFE', marginRight: 10}}/>
-                                <NormalText style={{color: '#FFFFFE', fontSize: 16}}>{categoryName}</NormalText>
+                            <Gradient style={{
+                                elevation: 2,
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                height: 50,
+                                width: 200,
+                                borderRadius: 4,
+                                marginHorizontal: 8,
+                                paddingHorizontal: 16
+                            }}>
+                                <Icon name="md-arrow-dropdown" type="Ionicons"
+                                      style={{color: '#FFFFFE', marginRight: 10}}/>
+                                <NormalText style={{color: '#FFFFFE', fontSize: 17}}>{categoryName}</NormalText>
                             </Gradient>
                         </Row>
                     </TouchableOpacity>
                 </View>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
                     <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>پاسخ ها:</BoldText>
-                    <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 1:</NormalText>
-                        <Row style={addQuestionStyles.inputRow}>
-                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={firstAnsCorrect} onValueChange={() => {
-                                setFirstAnsCorrect(true);
-                                setSecondAnsCorrect(false);
-                                setThirdAnsCorrect(false);
-                                setForthAnsCorrect(false);
-                            }}/>
-                            <TextInput
-                                ref={firstAnsInput}
-                                onChangeText={(text) => setFirstAns(text)}
-                                // underlineColorAndroid="#354561"
-                                style={addQuestionStyles.input}
-                            />
-
-                        </Row>
-                    </View>
-                    <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 2:</NormalText>
-                        <Row style={addQuestionStyles.inputRow}>
-                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={secondAnsCorrect} onValueChange={() => {
-                                setSecondAnsCorrect(true);
-                                setFirstAnsCorrect(false);
-                                setThirdAnsCorrect(false);
-                                setForthAnsCorrect(false);
-                            }}/>
-                            <TextInput
-                                ref={secondAnsInput}
-                                onChangeText={(text) => setSecondAns(text)}
-                                // underlineColorAndroid="#354561"
-                                style={addQuestionStyles.input}
-                            />
-                        </Row>
-                    </View>
-                    <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 3:</NormalText>
-                        <Row style={addQuestionStyles.inputRow}>
-                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={thirdAnsCorrect} onValueChange={() => {
-                                setThirdAnsCorrect(true);
-                                setFirstAnsCorrect(false);
-                                setSecondAnsCorrect(false);
-                                setForthAnsCorrect(false);
-                            }}/>
-                            <TextInput
-                                ref={thirdAnsInput}
-                                onChangeText={(text) => setThirdAns(text)}
-                                // underlineColorAndroid="#354561"
-                                style={addQuestionStyles.input}
-                            />
-                        </Row>
-                    </View>
-                    <View style={{alignItems: 'center', marginVertical: 15, width: '100%'}}>
-                        <NormalText style={{alignSelf: 'flex-end', fontSize: 15, color: '#4b6cb7'}}>پاسخ 4:</NormalText>
-                        <Row style={addQuestionStyles.inputRow}>
-                            <CheckBox tintColors={{true: '#3cbea2', false: '#194b9a'}} value={forthAnsCorrect} onValueChange={() => {
-                                setForthAnsCorrect(true);
-                                setFirstAnsCorrect(false);
-                                setSecondAnsCorrect(false);
-                                setThirdAnsCorrect(false);
-                            }}/>
-                            <TextInput
-                                ref={forthAnsInput}
-                                onChangeText={(text) => setForthAns(text)}
-                                // underlineColorAndroid="#354561"
-                                style={addQuestionStyles.input}
-                            />
-                        </Row>
-                    </View>
+                    <CustomTextInput
+                        inputRef={firstAnsInput}
+                        placeholder='گزینه 1 ...'
+                        onChangeText={(text) => setFirstAns(text)}
+                        inputTitle="گزینه 1"
+                    />
+                    <CustomTextInput
+                        inputRef={secondAnsInput}
+                        placeholder='گزینه 2 ...'
+                        onChangeText={(text) => setSecondAns(text)}
+                        inputTitle="گزینه 2"
+                    />
+                    <CustomTextInput
+                        inputRef={thirdAnsInput}
+                        placeholder='گزینه 3 ...'
+                        onChangeText={(text) => setThirdAns(text)}
+                        inputTitle="گزینه 3"
+                    />
+                    <CustomTextInput
+                        inputRef={forthAnsInput}
+                        placeholder='گزینه 4 ...'
+                        onChangeText={(text) => setForthAns(text)}
+                        inputTitle="گزینه 4"
+                    />
                 </View>
                 <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
                     <PrimaryButton style={{width: '90%'}} onPress={() => createQuestion()} btnText="ارسال"/>
@@ -281,8 +247,7 @@ function AddQuestion(props) {
 }
 
 const addQuestionStyles = StyleSheet.create({
-    inputRow: {width: '100%', alignItems: 'center', justifyContent: 'space-between', marginTop: 16},
-    input: {width: '90%', fontFamily: 'IRANYekanMobileMedium', borderWidth: 1, borderColor: '#194b9a', paddingHorizontal: 8, fontSize: 16}
+
 })
 
 export default AddQuestion

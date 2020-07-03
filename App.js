@@ -16,6 +16,9 @@ import SplashScreen from "./src/screens/SplashScreen.Screen";
 import EditProfile from "./src/screens/EditProfile.Screen";
 import {Icon} from 'native-base'
 import UserQuestions from "./src/screens/UserQuestions";
+import BeforeQuiz from "./src/screens/BeforeQuiz";
+import Quiz from "./src/screens/Quiz";
+import AfterQuiz from "./src/screens/AfterQuiz";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,6 +39,16 @@ function HomeStackScreen() {
             <HomeStack.Screen name="CategoriesList" component={CategoriesList} options={{
                 headerShown: false
             }}/>
+            <HomeStack.Screen name="BeforeQuiz" component={BeforeQuiz} options={{
+                headerShown: false
+            }}/>
+            <HomeStack.Screen name="Quiz" component={Quiz} options={{
+                headerShown: false
+            }}/>
+            <HomeStack.Screen name="AfterQuiz" component={AfterQuiz} options={{
+                headerShown: false
+            }}/>
+
         </HomeStack.Navigator>
     );
 }
