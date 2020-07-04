@@ -9,9 +9,7 @@ function PrimaryButton(props) {
             activeOpacity={0.7}
             onPress={props.onPress}
             style={[styles.buttonContainer, styles.primaryButtonBackgroundColor, props.style]}>
-            <Gradient style={{borderRadius: 4}}>
                 <Text style={[styles.buttonText, styles.primaryButtonFontColor, props.textStyle, {color: '#fff'}]}>{props.btnText}</Text>
-            </Gradient>
         </TouchableOpacity>
     )
 }

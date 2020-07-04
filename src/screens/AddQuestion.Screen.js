@@ -15,6 +15,8 @@ import {View, Modal, TextInput, ScrollView, TouchableOpacity, FlatList, StyleShe
 import CheckBox from "@react-native-community/checkbox";
 import {UserContext} from "../context/UserContext";
 import {domain, headers} from "../config";
+
+const tintColor = {true: '#24d292', false: '#d558c8'}
 import LinearGradient from "react-native-linear-gradient";
 
 function AddQuestion(props) {
@@ -189,30 +191,26 @@ function AddQuestion(props) {
                 <View style={{marginVertical: 10}}>
                     <BoldText style={{fontSize: 17, marginBottom: 8}}>دسته بندی:</BoldText>
                     <TouchableOpacity
+                        style={{borderRadius: 80, width: '100%', borderWidth: 1, borderColor: '#d558c8'}}
                         activeOpacity={0.8}
                         onPress={() => setCategoryModalState(true)}
                     >
-                        <Row style={{justifyContent: 'flex-end'}}>
-                            <Gradient style={{
-                                elevation: 2,
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                height: 50,
-                                width: 200,
-                                borderRadius: 4,
-                                marginHorizontal: 8,
-                                paddingHorizontal: 16
-                            }}>
-                                <Icon name="md-arrow-dropdown" type="Ionicons"
-                                      style={{color: '#FFFFFE', marginRight: 10}}/>
-                                <NormalText style={{color: '#FFFFFE', fontSize: 17}}>{categoryName}</NormalText>
-                            </Gradient>
+                        <Row style={{
+                            backgroundColor: '#d558c8',
+                            borderRadius: 80,
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            paddingHorizontal: 16,
+                            height: 50, width: '100%'
+                        }}>
+                            <Icon name="md-arrow-dropdown" type="Ionicons"
+                                  style={{color: '#FFFFFE', marginRight: 10}}/>
+                            <NormalText style={{color: '#FFFFFE', fontSize: 17}}>{categoryName}</NormalText>
                         </Row>
                     </TouchableOpacity>
                 </View>
                 <View style={{alignItems: 'center', marginVertical: 10}}>
-                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>پاسخ ها:</BoldText>
+                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>گزینه ها:</BoldText>
                     <CustomTextInput
                         inputRef={firstAnsInput}
                         placeholder='گزینه 1 ...'
@@ -238,6 +236,51 @@ function AddQuestion(props) {
                         inputTitle="گزینه 4"
                     />
                 </View>
+                <View>
+                    <BoldText style={{alignSelf: 'flex-end', fontSize: 17}}>پاسخ صحیح:</BoldText>
+                    <Row style={{justifyContent: 'space-around', marginVertical: 16}}>
+                        <View style={{alignItems: 'center'}}>
+                            <NormalText>گزینه 4</NormalText>
+                            <CheckBox tintColors={tintColor} value={forthAnsCorrect}
+                                      onValueChange={() => {
+                                          setForthAnsCorrect(true);
+                                          setFirstAnsCorrect(false);
+                                          setSecondAnsCorrect(false);
+                                          setThirdAnsCorrect(false);
+                                      }}/>
+                        </View>
+                        <View style={{alignItems: 'center'}}>
+                            <NormalText>گزینه 3</NormalText>
+                            <CheckBox tintColors={tintColor} value={thirdAnsCorrect}
+                                      onValueChange={() => {
+                                          setThirdAnsCorrect(true);
+                                          setFirstAnsCorrect(false);
+                                          setSecondAnsCorrect(false);
+                                          setForthAnsCorrect(false);
+                                      }}/>
+                        </View>
+                        <View style={{alignItems: 'center'}}>
+                            <NormalText>گزینه 2</NormalText>
+                            <CheckBox tintColors={tintColor} value={secondAnsCorrect}
+                                      onValueChange={() => {
+                                          setSecondAnsCorrect(true);
+                                          setFirstAnsCorrect(false);
+                                          setThirdAnsCorrect(false);
+                                          setForthAnsCorrect(false);
+                                      }}/>
+                        </View>
+                        <View style={{alignItems: 'center'}}>
+                            <NormalText>گزینه 1</NormalText>
+                            <CheckBox tintColors={tintColor} value={firstAnsCorrect}
+                                      onValueChange={() => {
+                                          setFirstAnsCorrect(true);
+                                          setSecondAnsCorrect(false);
+                                          setThirdAnsCorrect(false);
+                                          setForthAnsCorrect(false);
+                                      }}/>
+                        </View>
+                    </Row>
+                </View>
                 <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
                     <PrimaryButton style={{width: '90%'}} onPress={() => createQuestion()} btnText="ارسال"/>
                 </View>
@@ -246,8 +289,6 @@ function AddQuestion(props) {
     )
 }
 
-const addQuestionStyles = StyleSheet.create({
-
-})
+const addQuestionStyles = StyleSheet.create({})
 
 export default AddQuestion

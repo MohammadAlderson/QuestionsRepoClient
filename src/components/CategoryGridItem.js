@@ -8,42 +8,20 @@ import General from './../../assets/icons/categories/general.svg'
 import Religious from './../../assets/icons/categories/religious.svg'
 import Historical from './../../assets/icons/categories/historical.svg'
 import Default from './../../assets/icons/categories/default.svg'
+import CheckCategoryIconType from "../utils/CheckCategotyIconType";
 
 const iconWidth = 40;
 const iconHeight = 40;
 
 function CategoryGridItem(props) {
     const {type} = props.item
-    let icon;
-    switch (type) {
-        case 'historical':
-            icon = <Historical width={iconWidth} height={iconHeight} />;
-            break;
-        case 'religious':
-            icon = <Religious width={iconWidth} height={iconHeight} />;
-            break;
-        case 'scientific':
-            icon = <Scientific width={iconWidth} height={iconHeight} />;
-            break;
-        case 'general':
-            icon = <General width={iconWidth} height={iconHeight} />;
-            break;
-        case 'sports':
-            icon = <Sports width={iconWidth} height={iconHeight} />;
-            break;
-        case 'technology':
-            icon = <Technology width={iconWidth} height={iconHeight} />;
-            break;
-        default:
-            icon = <Default width={iconWidth} height={iconHeight} />
-
-    }
-
+    let icon = CheckCategoryIconType(type, iconWidth, iconHeight)
     return (
         <TouchableOpacity
             onPress={() => props.navigation.navigate('BeforeQuiz', {
                 categoryId: props.item._id,
-                categoryName: props.item.name
+                categoryName: props.item.name,
+                categoryType: type
             })}
             style={CategoryGridStyles.container}>
             {icon}

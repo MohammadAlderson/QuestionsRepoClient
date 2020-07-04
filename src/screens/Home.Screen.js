@@ -26,7 +26,7 @@ function Home(props) {
             <StatusBar translucent={true} backgroundColor="transparent"/>
             <Gradient>
                 <View style={{
-                    height: '50%',
+                    height: '67%',
                     width: '100%',
                     justifyContent: 'center',
                     alignItems: 'center'
@@ -35,18 +35,18 @@ function Home(props) {
                     <BoldText style={{color: '#FFFFFE', fontSize: 40, marginTop: 10}}>کوییز</BoldText>
                 </View>
                 <View style={{
-                    height: '50%',
+                    height: '33%',
                     backgroundColor: '#f6f6f6',
                     width: '100%',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center',
                     alignItems: 'center',
                     borderTopLeftRadius: 24,
                     borderTopRightRadius: 24
                 }}>
                     <PrimaryButton btnText="شروع"
+                                   style={{height: 60}}
                                    onPress={() => navigator('CategoriesList')}
-                                   textStyle={{fontFamily: 'IRANYekanMobileBold', fontSize: 24}}
-                                   style={{height: 75, borderRadius: 4, marginTop: 60}}/>
+                                   textStyle={{fontFamily: 'IRANYekanMobileBold', fontSize: 24}} />
                 </View>
             </Gradient>
         </Container>

@@ -19,14 +19,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     primaryButtonBackgroundColor: {
-        // backgroundColor: '#FFFFFE',
+        backgroundColor: '#d558c8',
         // borderWidth: 1.5,
         // borderColor: '#874fcc'
-    },
-    secondaryButtonBackgroundColor: {
-        backgroundColor: '#FFFFFE',
-        borderWidth: 1.5,
-        borderColor: '#874fcc',
     },
     primaryButtonFontColor: {
         color: '#FFFFFE',
@@ -40,18 +35,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     secondaryButtonContainer: {
-        borderRadius: 4,
-        backgroundColor: '#fff',
-        width: '99.2%',
-        height: '95%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: '#FFFFFE',
+        borderWidth: 1,
+        borderColor: '#d558c8',
     },
     buttonContainer: {
         height: 50,
-        width: 200,
-        borderRadius: 4,
-        marginVertical: 10
+        width: '90%',
+        borderRadius: 80,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     buttonInsideLayer : {
         flex: 1,

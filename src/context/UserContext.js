@@ -1,6 +1,7 @@
 import React from 'react';
 import AsyncStorage from "@react-native-community/async-storage";
 import {AuthContext} from "../../App";
+import {domain} from "../config";
 
 export const UserContext = React.createContext();
 
@@ -28,7 +29,7 @@ function UserContextProvider(props) {
     }
 
     async function fetchUserData() {
-        const url = 'http://192.168.43.92:4001/api/getUserData'
+        const url = `${domain}/api/getUserData`
         const body = JSON.stringify({
             userId: userId
         });

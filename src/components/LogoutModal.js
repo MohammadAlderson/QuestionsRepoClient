@@ -27,12 +27,11 @@ function Logout(props) {
                         justifyContent: 'space-between',
                         paddingHorizontal: 10,
                     }}>
-                        <SecondaryButton gradientStyle={{flex: 1, marginHorizontal: 3}} onPress={() => {
+                        <SecondaryButton style={{width: '50%'}} onPress={() => {
                             setLogoutModalState(false)
                             logOutHandler()
-                        }}
-                                         btnText="بله"/>
-                        <PrimaryButton style={{flex: 1, marginHorizontal: 3}} onPress={() => {
+                        }} btnText="بله"/>
+                        <PrimaryButton style={{marginHorizontal: 3, width: '50%'}} onPress={() => {
                             setLogoutModalState(false)
                         }} btnText="خیر"/>
                     </Row>

@@ -8,17 +8,14 @@ import LinearGradient from "react-native-linear-gradient";
 
 function SecondaryButton(props) {
     return (
-        <LinearGradient locations={locations} start={start} end={end} colors={colors}
-                        style={[styles.buttonContainer, styles.secondaryButtonGradient, props.gradientStyle]}>
-            <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={props.onPress}
-                style={[styles.secondaryButtonContainer, props.touchableStyle]}>
-                <View style={styles.buttonInsideLayer}>
-                    <Text style={[styles.buttonText, styles.secondaryButtonFontColor]}>{props.btnText}</Text>
-                </View>
-            </TouchableOpacity>
-        </LinearGradient>
+        <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={props.onPress}
+            style={[styles.buttonContainer,styles.secondaryButtonContainer, props.style]}>
+            <View style={styles.buttonInsideLayer}>
+                <Text style={[styles.buttonText, styles.secondaryButtonFontColor]}>{props.btnText}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 

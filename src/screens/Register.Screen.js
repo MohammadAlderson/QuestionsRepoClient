@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 import AuthStyles from "../styles/Auth.styles";
 import LinearGradient from "react-native-linear-gradient";
 import {colors, end, locations, start} from "../ui/GradientConfig";
+import {domain} from "../config";
 
 function Register(props) {
 
@@ -20,7 +21,7 @@ function Register(props) {
 
     async function registerHandler() {
         if(password === repeatPassword) {
-            const url = 'http://192.168.43.92:4001/api/register'
+            const url = `${domain}/api/register`
             const body = JSON.stringify({
                 userName,
                 password

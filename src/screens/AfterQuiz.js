@@ -60,7 +60,7 @@ function AfterQuiz(props) {
                         }],
                     })}
                     textStyle={{fontFamily: 'IRANYekanMobileBold', fontSize: 24}}
-                    style={{height: 75, borderRadius: 4, marginTop: 60}}/>
+                    style={{height: 60, borderRadius: 80, marginTop: 60}}/>
             </Gradient>
         </Container>
     )

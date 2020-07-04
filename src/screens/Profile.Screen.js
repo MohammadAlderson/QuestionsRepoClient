@@ -138,12 +138,11 @@ function Profile(props) {
                                     }}>
                                     <PrimaryButton
                                         onPress={() => props.navigation.navigate('EditProfile')}
-                                        style={{borderRadius: 4, width: '90%', height: 50}} btnText="ویرایش پروفایل"/>
+                                        btnText="ویرایش پروفایل"/>
                                     <PrimaryButton
                                         onPress={() => props.navigation.navigate('UserQuestions', {userId})}
-                                        style={{borderRadius: 4, width: '90%', height: 50}} btnText="سوال های من"/>
+                                        btnText="سوال های من"/>
                                     <SecondaryButton
-                                        gradientStyle={{width: '90%'}}
                                         onPress={() => setLogoutModalState(true)}
                                         btnText="خروج از حساب کاربری"/>
                                 </View>

@@ -8,14 +8,12 @@ function CustomTextInput(props) {
         <View style={TextInputStyles.container}>
             {props.inputTitle &&
             <BoldText style={[TextInputStyles.title, props.titleStyle]}> {props.inputTitle} </BoldText>}
-            <Gradient style={[TextInputStyles.gradient, props.gradientStyle]}>
                 <TextInput
                     placeholder={props.placeholder}
                     ref={props.inputRef}
                     onChangeText={props.onChangeText}
                     style={[TextInputStyles.input, props.inputStyle]}
                 />
-            </Gradient>
         </View>
     )
 }
@@ -25,12 +23,13 @@ const TextInputStyles = StyleSheet.create({
     title: {fontSize: 17, marginBottom: 8, color: '#194b9a', alignSelf: 'flex-end'},
     gradient: {height: 55, justifyContent: 'center', alignItems: 'center', borderRadius: 4},
     input : {
-        width: '99.2%',
-        height: '95%',
+        width: '100%',
         fontFamily: 'IRANYekanMobileMedium',
         borderRadius: 4,
         backgroundColor: '#fff',
-        paddingHorizontal: 5
+        paddingHorizontal: 5,
+        borderWidth: 1,
+        borderColor: '#d558c8',
     }
 })
 
