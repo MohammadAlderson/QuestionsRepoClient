@@ -3,10 +3,6 @@ import {StatusBar, View} from 'react-native'
 import Logo from './../../assets/icons/logo.svg'
 import {Container, Body, PrimaryButton, BoldText, Gradient} from './../ui/index'
 import SplashScreen from 'react-native-splash-screen'
-import LinearGradient from "react-native-linear-gradient";
-import {start, end, locations, colors} from './../ui/GradientConfig'
-
-// background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 
 function Home(props) {
 

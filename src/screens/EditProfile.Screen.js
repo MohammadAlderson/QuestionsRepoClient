@@ -1,9 +1,9 @@
 import React from 'react';
-import {BoldText, Container, CustomHeader, CustomTextInput, CustomToast, PrimaryButton, Row} from "../ui";
-import {ScrollView, TextInput, View} from "react-native";
+import {Container, CustomHeader, CustomTextInput, CustomToast, PrimaryButton, Row} from "../ui";
+import {ScrollView} from "react-native";
 import {domain, headers} from "../config";
 import {UserContext} from "../context/UserContext";
-import AuthStyles from "../styles/Auth.styles";
+import ErrorToast from "../components/ErrorToast";
 
 function EditProfile(props) {
     const {fetchUserData, handleLoader, userId} = React.useContext(UserContext);
@@ -26,14 +26,18 @@ function EditProfile(props) {
                 email
             })
             const url = `${domain}/api/EditUserProfile`
-            let response = await fetch(url, {body, method: 'POST', headers});
-            let res = await response.json();
-            if (res.statusCode === 200) {
-                CustomToast('اطلاعات با موفقیت تغییر یافت', 3000, "success")
-                refreshUserDataHandler();
-                props.navigation.goBack();
-            } else {
-                CustomToast('عدم برقراری ارتباط با سرور', 3000, "danger")
+            try {
+
+
+                let response = await fetch(url, {body, method: 'POST', headers});
+                let res = await response.json();
+                if (res.statusCode === 200) {
+                    CustomToast('اطلاعات با موفقیت تغییر یافت', 3000, "success")
+                    refreshUserDataHandler();
+                    props.navigation.goBack();
+                }
+            } catch (e) {
+                ErrorToast()
             }
         }
     }

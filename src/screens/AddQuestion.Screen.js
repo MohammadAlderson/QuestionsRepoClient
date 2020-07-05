@@ -18,6 +18,7 @@ import {domain, headers} from "../config";
 
 const tintColor = {true: '#24d292', false: '#d558c8'}
 import LinearGradient from "react-native-linear-gradient";
+import ErrorToast from "../components/ErrorToast";
 
 function AddQuestion(props) {
 
@@ -136,6 +137,7 @@ function AddQuestion(props) {
             }
             console.log('res', res)
         } catch (e) {
+            ErrorToast()
             console.log(e)
         }
     }

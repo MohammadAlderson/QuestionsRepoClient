@@ -60,7 +60,7 @@ function UserQuestions(props) {
                                 justifyContent: 'space-between',
                                 padding: 10,
                                 height: 80,
-                                backgroundColor: '#e5f5ef',
+                                backgroundColor: '#fff',
                                 marginVertical: 5,
                                 borderRadius: 4
                             }}>

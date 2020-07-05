@@ -9,6 +9,7 @@ import AuthStyles from "../styles/Auth.styles";
 import LinearGradient from "react-native-linear-gradient";
 import {colors, end, locations, start} from "../ui/GradientConfig";
 import {domain} from "../config";
+import ErrorToast from "../components/ErrorToast";
 
 function Register(props) {
 
@@ -41,7 +42,8 @@ function Register(props) {
                     await AsyncStorage.setItem('userId', res.data.id)
                 }
             } catch (e) {
-                console.log(e.message)
+                console.log(e.message);
+                ErrorToast()
             }
         } else {
             CustomToast('کلمه عبور همخوانی ندارد!', 4000, "danger")

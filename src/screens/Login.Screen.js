@@ -1,24 +1,32 @@
 import React from 'react';
-import {StatusBar, TextInput, View} from 'react-native'
-import {Body, BoldText, Container, Gradient, PrimaryButton, Row, SecondaryButton} from "../ui";
-import LoginIcon from './../../assets/icons/login.svg'
-// import {AuthContext} from "../context/AuthContext";
+import {StatusBar, TextInput, View, ActivityIndicator} from 'react-native'
+import AsyncStorage from "@react-native-community/async-storage";
+import SplashScreen from 'react-native-splash-screen'
+import LinearGradient from "react-native-linear-gradient";
+
 import {UserContext} from "../context/UserContext";
 import {AuthContext} from "../../App";
-import AsyncStorage from "@react-native-community/async-storage";
+
+import {Body, BoldText, Container, CustomToast, PrimaryButton, Row, SecondaryButton} from "../ui";
 import AuthStyles from "../styles/Auth.styles";
+import styles from "../styles/ui.styles";
+
+import LoginIcon from './../../assets/icons/login.svg'
+
 import {colors, end, locations, start} from "../ui/GradientConfig";
-import LinearGradient from "react-native-linear-gradient";
+import {domain} from "../config";
+import ErrorToast from "../components/ErrorToast";
 
 function Login(props) {
 
     const {setLoginHandler} = React.useContext(AuthContext);
     const {setUserIdHandler} = React.useContext(UserContext);
+    const [loader, setLoader] = React.useState(false)
     const [userName, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
 
     async function loginHandler() {
-        const url = 'http://192.168.43.92:4001/api/login'
+        const url = `${domain}/api/login`
         const body = JSON.stringify({
             userName,
             password
@@ -32,11 +40,22 @@ function Login(props) {
                 await AsyncStorage.setItem('userId', res.data.id)
                 setLoginHandler(true);
                 setUserIdHandler(res.data.id);
+            } else if (res.statusCode === -2) {
+                CustomToast('نام کاربری صحیح نمی باشد!', 3000, 'danger')
+            } else if (res.statusCode === -1) {
+                CustomToast('کلمه عبور صحیح نمی باشد!', 3000, 'danger')
             }
+            setLoader(false)
         } catch (e) {
+            ErrorToast()
+            setLoader(false)
             console.log(e)
         }
     }
+
+    React.useEffect(() => {
+        SplashScreen.hide();
+    }, [])
 
     return (
         <Container>
@@ -63,7 +82,18 @@ function Login(props) {
                         />
                     </View>
                     <Row style={{width: '100%', justifyContent: 'center'}}>
-                        <PrimaryButton onPress={() => loginHandler()} btnText="ورود" />
+                        {
+                            loader ? (
+                                <View style={[styles.buttonContainer, styles.primaryButtonBackgroundColor]}>
+                                    <ActivityIndicator color="#fff" />
+                                </View>
+                            ) : (
+                                <PrimaryButton onPress={() => {
+                                    setLoader(true);
+                                    loginHandler()
+                                }} btnText="ورود" />
+                            )
+                        }
                     </Row>
                     <Row style={{width: '100%', justifyContent: 'center'}}>
                         <SecondaryButton onPress={() => props.navigation.navigate('Register')} btnText="عضویت" />
