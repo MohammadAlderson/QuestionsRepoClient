@@ -14,7 +14,7 @@ function Button(props) {
                 borderRadius: 4,
                 height: 75,
                 elevation: 3,
-                marginHorizontal: 8,
+                marginHorizontal: '2%',
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: '#FFFFFE',

@@ -70,12 +70,14 @@ function Register(props) {
                     <View style={{width: '100%', marginVertical: 10}}>
                         <BoldText style={AuthStyles.textInputTitle}>کلمه عبور</BoldText>
                         <TextInput
+                            secureTextEntry={true}
                             onChangeText={text => setPassword(text)}
                             style={AuthStyles.textInput}
                         />
                         <View style={{width: '100%', marginVertical: 10}}>
                             <BoldText style={AuthStyles.textInputTitle}>تکرار کلمه عبور</BoldText>
                             <TextInput
+                                secureTextEntry={true}
                                 onChangeText={text => setRepeatPassword(text)}
                                 style={AuthStyles.textInput}
                             />

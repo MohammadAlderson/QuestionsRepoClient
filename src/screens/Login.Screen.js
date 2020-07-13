@@ -77,6 +77,7 @@ function Login(props) {
                     <View style={{width: '100%', marginVertical: 10}}>
                         <BoldText style={AuthStyles.textInputTitle}>کلمه عبور</BoldText>
                         <TextInput
+                            secureTextEntry={true}
                             onChangeText={text => setPassword(text)}
                             style={AuthStyles.textInput}
                         />

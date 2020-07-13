@@ -13,6 +13,7 @@ function CustomTextInput(props) {
                     ref={props.inputRef}
                     onChangeText={props.onChangeText}
                     style={[TextInputStyles.input, props.inputStyle]}
+                    {...props}
                 />
         </View>
     )
