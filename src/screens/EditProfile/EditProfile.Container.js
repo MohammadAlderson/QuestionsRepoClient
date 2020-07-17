@@ -50,6 +50,7 @@ function EditProfileContainer(props) {
             setDisplayName={setDisplayName}
             setEmail={setEmail}
             editProfileHandler={editProfileHandler}
+            {...props}
         />
     )
 }

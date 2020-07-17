@@ -11,6 +11,7 @@ function BeforeQuizContainer(props) {
     const [questionList, setQuestionList] = React.useState();
     const [questionListNoData, setQuestionListNoData] = React.useState(false)
     const [loader, setLoader] = React.useState(true)
+    const [questionsCount, setQuestionsCount] = React.useState(0)
     console.log('params.categoryId', params.categoryId)
 
     async function fetchQuestionList() {
@@ -27,6 +28,7 @@ function BeforeQuizContainer(props) {
                 setLoader(false)
                 console.log('response.data', response.data)
                 if (response.data !== undefined && response.data.length > 0) {
+                    setQuestionsCount(response.data.length)
                     setQuestionList(response.data)
                     setQuestionListNoData(false);
                 } else {
@@ -54,7 +56,7 @@ function BeforeQuizContainer(props) {
     let icon = CheckCategoryIconType(params.categoryType, iconWidth, iconHeight, 'white')
 
     return (
-        <BeforeQuizView icon={icon} questionList={questionList} take={take} loader={loader}
+        <BeforeQuizView icon={icon} questionList={questionList} questionsCount={questionsCount} take={take} loader={loader}
                         questionListNoData={questionListNoData} {...props} />
     )
 }

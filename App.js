@@ -2,12 +2,12 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from "@react-navigation/stack";
-import Login from "./src/screens/Login.Screen";
-import Register from "./src/screens/Register.Screen";
 import {Root} from 'native-base';
 import UserContextProvider from "./src/context/UserContext";
-import SplashScreen from "./src/screens/SplashScreen.Screen";
 import TabStack from "./src/stacks/Tab.Stack";
+import LoginContainer from "./src/screens/Login/Login.Container";
+import RegisterContainer from "./src/screens/Register/Register.Container";
+import SplashScreenContainer from "./src/screens/SplashScreen/SplashScreen.Container";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +39,7 @@ function App() {
                             <Stack.Navigator headerMode="none">
                                 {
                                     loading ? (
-                                        <Stack.Screen name="SplashScreen" component={SplashScreen}/>
+                                        <Stack.Screen name="SplashScreen" component={SplashScreenContainer}/>
                                     ) : (
                                         isLogin ? (
                                             <>
@@ -47,8 +47,8 @@ function App() {
                                             </>
                                         ) : (
                                             <>
-                                                <Stack.Screen name="Login" component={Login}/>
-                                                <Stack.Screen name="Register" component={Register}/>
+                                                <Stack.Screen name="Login" component={LoginContainer}/>
+                                                <Stack.Screen name="Register" component={RegisterContainer}/>
                                             </>
                                         )
                                     )

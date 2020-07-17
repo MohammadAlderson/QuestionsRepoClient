@@ -8,7 +8,7 @@ const iconWidth = 80;
 const iconHeight = 80;
 
 function BeforeQuizView(props) {
-    const {icon, questionList, take, questionListNoData, loader} = props;
+    const {icon, questionList, questionListNoData, loader, questionsCount} = props;
     return (
         <Container>
             {
@@ -37,12 +37,12 @@ function BeforeQuizView(props) {
                         <View style={styles.topSection}>
                             {icon}
                             <NormalText style={styles.regularCaption}>تعداد سوال
-                                : {take}</NormalText>
+                                : {questionsCount}</NormalText>
                         </View>
                         <View style={styles.buttonsContainer}>
                             <NormalButton
                                 onPress={() => props.navigation.navigate('Quiz', {
-                                    questionList
+                                    questionList, questionsCount: questionsCount
                                 })}
                                 textStyle={styles.normalBtnTxt} style={styles.normalBtn} btnText="شروع"
                             />
